@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageContentViewController">
+            <connections>
+                <outlet property="imvRandomManga" destination="aAn-8m-OiH" id="Qeg-RO-Qjl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aAn-8m-OiH">
+                    <rect key="frame" x="131" y="0.0" width="338" height="338"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="aAn-8m-OiH" secondAttribute="height" multiplier="1:1" id="jXt-Ei-ep0"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="aAn-8m-OiH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D6I-rc-k2o"/>
+                <constraint firstItem="aAn-8m-OiH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="upL-Jp-3Np"/>
+                <constraint firstItem="aAn-8m-OiH" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="vxj-up-h6L"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="279" y="219"/>
+        </view>
+    </objects>
+</document>

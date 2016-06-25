@@ -29,6 +29,7 @@
 - (IBAction)clickPreviewPage:(id)sender;
 - (IBAction)clickNextPage:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property NSString *urlString;
 @property NSMutableArray *currentPageObjects;

@@ -37,7 +37,7 @@
                 [self loadCategory:urlString topStoryImageXpathQueryString:topStoryImageXpathQueryString];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    //[self leftType];
+           
                     [self.tableView reloadData];
                 });
             });
@@ -244,11 +244,12 @@
 
 
 #define TABLE_POSITION_X self.view.frame.size.width - 150
-#define TABLE_POSITION_Y self.navigationController.navigationBar.frame.size.height+20+self.pageViewController.view.frame.size.height
+#define TABLE_POSITION_Y self.navigationController.navigationBar.frame.size.height-40+self.pageViewController.view.frame.size.height
 #define TABLE_WIDTH 150
-#define TABLE_HEIGHT self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-20-self.pageViewController.view.frame.size.height
+#define TABLE_HEIGHT self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height+40-self.pageViewController.view.frame.size.height
 #pragma mark - Type
 - (void) leftType {
+    _tableView.translatesAutoresizingMaskIntoConstraints = YES;
     _tableView.frame = CGRectMake(TABLE_POSITION_X, TABLE_POSITION_Y, TABLE_WIDTH, TABLE_HEIGHT);
 }
 

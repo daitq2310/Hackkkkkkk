@@ -178,6 +178,7 @@
                     [MBProgressHUD hideHUDForView:listChapVCL.view animated:YES];
                     [listChapVCL.tableView reloadData];
                     [listChapVCL viewDidLoad];
+                    
                 });
             });
         });
@@ -205,6 +206,7 @@
         
         [self presentViewController:alert animated:YES completion:nil];
     };
+    listChapVCL.imvMangaString = [self.coverObjects objectAtIndex:indexPath.row];
     [reach startNotifier];
 }
 #pragma mark - Click Preview page

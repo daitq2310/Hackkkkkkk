@@ -128,10 +128,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView.tableFooterView = [[UIView alloc] init];
+   
     if(self.summaryContentObjects.count > 0) {
         SummaryContent *summaryContent = [[SummaryContent alloc] init];
         summaryContent = [self.summaryContentObjects objectAtIndex:0];
         self.lblSummaryContent.text = summaryContent.textContent;
+//        _imvManga.image = [UIImage imageNamed:_imvMangaString];
     }
     
 }

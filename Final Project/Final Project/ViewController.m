@@ -26,7 +26,7 @@
     {
         NSLog(@"REACHABLE!");
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *urlString = @"http://mangak.info/";
                 NSString *categorysXpathQueryString = @"//table[@class='theloai']/tbody/tr/td";
@@ -36,8 +36,7 @@
                 [self loadCategory:urlString topStoryNameXpathQueryString:topStoryNameXpathQueryString];
                 [self loadCategory:urlString topStoryImageXpathQueryString:topStoryImageXpathQueryString];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-           
+                    [hud hide:YES];
                     [self.tableView reloadData];
                 });
             });
@@ -169,7 +168,7 @@
     {
         NSLog(@"REACHABLE!");
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 xCategory  *categoryOfThisCell = [self.categoryObjects objectAtIndex:indexPath.row];
                 NSString *urlString = categoryOfThisCell.url;
@@ -191,7 +190,7 @@
                 [listStoryVCL loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString];
                 [listStoryVCL loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:listStoryVCL.view animated:YES];
+                    [hud hide:YES];
                     [listStoryVCL.tableView reloadData];
                 });
             });

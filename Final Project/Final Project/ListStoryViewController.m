@@ -164,7 +164,7 @@
     {
         NSLog(@"REACHABLE!");
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD showHUDAddedTo:listChapVCL.view animated:YES];
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 StoryName  *storyNameOfThisCell = [self.storyNameObjects objectAtIndex:indexPath.row];
                 NSString *urlString = storyNameOfThisCell.url;
@@ -175,7 +175,7 @@
                 [listChapVCL loadListChap:urlString dateUpdate:chapterNameXpathQueryString];
                 [listChapVCL loadListChap:urlString summaryContent:summaryContentXpathQueryString];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:listChapVCL.view animated:YES];
+                    [hud hide:YES];
                     [listChapVCL.tableView reloadData];
                     [listChapVCL viewDidLoad];
                     
@@ -224,7 +224,7 @@
         {
             NSLog(@"REACHABLE!");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
+                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSString *urlString = previewPage.url;
                     NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
@@ -245,7 +245,7 @@
                     [listStoryVCL loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:listStoryVCL.view animated:YES];
+                        [hud hide:YES];
                         [listStoryVCL.tableView reloadData];
                     });
                 });
@@ -324,7 +324,7 @@
         {
             NSLog(@"REACHABLE!");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
+                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSString *urlString = nextPage.url;
                     NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
@@ -345,7 +345,7 @@
                     [listStoryVCL loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:listStoryVCL.view animated:YES];
+                        [hud hide:YES];
                         [listStoryVCL.tableView reloadData];
                     });
                 });

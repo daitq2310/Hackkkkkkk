@@ -10,7 +10,6 @@
 #import "MBProgressHUD.h"
 @interface ViewController ()
 
-
 @end
 
 @implementation ViewController
@@ -140,9 +139,6 @@
     return self.categoryObjects.count;
 }
 
-
-
-
 #pragma mark - cellForRowAtIndexPath
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CustomCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
@@ -168,7 +164,7 @@
     {
         NSLog(@"REACHABLE!");
         dispatch_async(dispatch_get_main_queue(), ^{
-            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 xCategory  *categoryOfThisCell = [self.categoryObjects objectAtIndex:indexPath.row];
                 NSString *urlString = categoryOfThisCell.url;

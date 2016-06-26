@@ -164,7 +164,11 @@
     {
         NSLog(@"REACHABLE!");
         dispatch_async(dispatch_get_main_queue(), ^{
-            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            // Merse di nhe !!!! Day nay
+            Cover *coverOfThisCell = [self.coverObjects objectAtIndex:indexPath.row];
+            [listChapVCL.imvManga setImageWithURL:[NSURL URLWithString:coverOfThisCell.url] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            ///
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listChapVCL.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 StoryName  *storyNameOfThisCell = [self.storyNameObjects objectAtIndex:indexPath.row];
                 NSString *urlString = storyNameOfThisCell.url;
@@ -224,7 +228,7 @@
         {
             NSLog(@"REACHABLE!");
             dispatch_async(dispatch_get_main_queue(), ^{
-                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSString *urlString = previewPage.url;
                     NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
@@ -276,38 +280,6 @@
             [self presentViewController:alert animated:YES completion:nil];
         };
         [reach startNotifier];
-        
-        
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //            NSString *urlString = previewPage.url;
-        //            NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
-        //            NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
-        //            NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-        //            NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-        //            NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
-        //            NSString *currentPageXpathQueryString = @"//span[@class='current']";
-        //            NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
-        //            NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
-        //            listStoryVCL.urlString = urlString;
-        //            [listStoryVCL loadListStorys:(NSString*)urlString storyName:(NSString*)storyNameXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString currentChap:(NSString*)currentChapXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString categorys:(NSString*)categorysXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString cover:(NSString*)coverXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString currentPage:(NSString*)currentPageXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString previewPage:(NSString*)previewPageXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString];
-        //            [listStoryVCL loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString];
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                [UIView transitionWithView: listStoryVCL.tableView
-        //                                  duration: 0.5f
-        //                                   options: UIViewAnimationOptionTransitionCurlUp
-        //                                animations: ^(void)
-        //                 {
-        //                     [listStoryVCL.tableView reloadData];
-        //                 }
-        //                                completion: nil];
-        //            });
-        //        });
     }
 }
 #pragma mark - Click Next page
@@ -324,7 +296,7 @@
         {
             NSLog(@"REACHABLE!");
             dispatch_async(dispatch_get_main_queue(), ^{
-                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSString *urlString = nextPage.url;
                     NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";

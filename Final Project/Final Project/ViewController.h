@@ -30,11 +30,10 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barBtnItem;
 
 @property ActionSheetViewController *actionSheetVC;
-
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *categoryObjects;
 @property NSMutableArray *topStoryImageObjects;
 @property NSMutableArray *topStoryNameObjects;
+
 @end
 

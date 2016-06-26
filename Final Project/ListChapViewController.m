@@ -104,7 +104,6 @@
     
     cell.lblChapterName.backgroundColor = [UIColor clearColor];
     cell.lblDateUpdate.backgroundColor = [UIColor clearColor];
-    
     if (indexPath.row % 2 == 0) {
         cell.contentView.backgroundColor = [UIColor colorWithRed:207.0f/255.0f green:216.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
     } else {

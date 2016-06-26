@@ -21,8 +21,7 @@
     [self customNavigation];
     [self SWRevealViewControllerInit];
     [self topPageIndicator];
-
-        Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     reach.reachableBlock = ^(Reachability*reach)
     {
         NSLog(@"REACHABLE!");
@@ -48,7 +47,7 @@
     {
         NSLog(@"UNREACHABLE!");
         UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:@"FBI Warning"
+                                     alertControllerWithTitle:@"Warning"
                                      message:@"Please checking for your network !"
                                      preferredStyle:UIAlertControllerStyleAlert];
         
@@ -70,10 +69,24 @@
     };
     [reach startNotifier];
     
+#pragma mark -Auto next pageViewController
+        NSMethodSignature *signature  = [self methodSignatureForSelector:@selector(update)];
+        NSInvocation      *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setTarget:self];
+        [invocation setSelector:@selector(update)];
+        [NSTimer scheduledTimerWithTimeInterval:2 invocation:invocation repeats:YES];
+        [self update];
 }
-
-
-
+-(UIViewController*)randomVC
+{
+    UIViewController *vc = [[UIViewController alloc] init];
+    int i = arc4random() % self.pageImages.count;
+    vc = [self viewControllerAtIndex:i];
+    return vc;
+}
+-(void) update{
+    [self.pageViewController setViewControllers:@[[self randomVC]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+}
 #pragma mark - Top story name
 -(void) loadCategory:(NSString*)urlString topStoryNameXpathQueryString:(NSString*)topStoryNameXpathQueryString {
     NSMutableArray *newTopStoryNames = [[NSMutableArray alloc] init];
@@ -93,7 +106,7 @@
 }
 
 
-
+#pragma mark - Top story image
 -(void) loadCategory:(NSString*)urlString topStoryImageXpathQueryString:(NSString*)topStoryImageXpathQueryString {
     NSMutableArray *newTopStoryImages = [[NSMutableArray alloc] init];
     NSArray *topStoryImageNodes = [[APIClient sharedInstance] loadFromUrl:urlString
@@ -109,10 +122,6 @@
     }
     self.topStoryImageObjects = newTopStoryImages;
 }
-
-
-
-
 #pragma mark - Category list
 -(void) loadCategory:(NSString*)urlString categoryXpathQueryString:(NSString*)categorysXpathQueryString {
     NSMutableArray *newCategorys = [[NSMutableArray alloc] init];
@@ -220,7 +229,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     };
     [reach startNotifier];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -294,8 +303,6 @@
     if(index==NSNotFound){
         return nil;
     }
-    
-    
     index++;
     if(index==[_pageImages count]){
         return [self viewControllerAtIndex:0];

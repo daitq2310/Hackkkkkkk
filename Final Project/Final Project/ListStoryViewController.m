@@ -235,14 +235,15 @@
 }
 #pragma mark - Click Preview page
 - (IBAction)clickPreviewPage:(id)sender {
+   
     if(self.previewPageObjects.count > 0) {
+        
         PreviewPage *previewPage = [[PreviewPage alloc] init];
         previewPage = [self.previewPageObjects objectAtIndex:0];
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
-        [self presentViewController:listStoryVCL animated:YES completion:^{
-        }];
-        
+        [self.navigationController pushViewController:listStoryVCL animated:YES];
+         [self customNavigation];
         Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
         reach.reachableBlock = ^(Reachability*reach)
         {
@@ -305,13 +306,16 @@
 }
 #pragma mark - Click Next page
 - (IBAction)clickNextPage:(id)sender {
+    [self customNavigation];
+    
     if(self.nextPageObjects.count > 0) {
         NextPage *nextPage = [[NextPage alloc] init];
         nextPage = [self.nextPageObjects objectAtIndex:0];
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
-        [self presentViewController:listStoryVCL animated:YES completion:^{
-        }];
+        [self.navigationController pushViewController:listStoryVCL animated:YES];
+     
+         [self customNavigation];
         Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
         reach.reachableBlock = ^(Reachability*reach)
         {

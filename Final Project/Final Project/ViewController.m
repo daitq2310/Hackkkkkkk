@@ -15,6 +15,8 @@
 @implementation ViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:189.0f/255.0f blue:189.0f/255.0f alpha:1.0f];
+    _tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self customNavigation];
     [self SWRevealViewControllerInit];
@@ -144,7 +146,7 @@
     CustomCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     xCategory  *categoryOfThisCell = [self.categoryObjects objectAtIndex:indexPath.row];
     cell.lblTitle.text = categoryOfThisCell.title;
-    
+    cell.backgroundColor = [UIColor clearColor];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }

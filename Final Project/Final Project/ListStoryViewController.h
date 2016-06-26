@@ -25,6 +25,8 @@
 #import <Reachability/Reachability.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 @interface ListStoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
+@property (weak, nonatomic) IBOutlet UIButton *btnPre;
 
 - (IBAction)clickPreviewPage:(id)sender;
 - (IBAction)clickNextPage:(id)sender;

@@ -25,6 +25,7 @@
 -(void) loadListChap:(NSString*)urlString summaryContent:(NSString*)summaryContentXpathQueryString;
 -(void) loadListChap:(NSString*)urlString dateUpdate:(NSString*)dateUpdateXpathQueryString;
 @property (weak, nonatomic) IBOutlet UILabel *lblSummaryContent;
+@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *imvManga;
 @property NSString *urlString;
 @property NSString *imvMangaString;

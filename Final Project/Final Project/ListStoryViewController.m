@@ -7,6 +7,7 @@
 //
 
 #import "ListStoryViewController.h"
+#import "ConstantValues.h"
 @interface ListStoryViewController ()
 
 @end
@@ -148,15 +149,28 @@
         cell.lblLink.text = storyNameOfThisCell.url;
         cell.lblCategorys.text = categorysOfThisCell.title;
     }
+    cell.coverImgView.layer.cornerRadius = 10.0f;
+    cell.coverImgView.layer.masksToBounds = YES;
+    cell.coverImgView.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.coverImgView.layer.borderWidth = 3.0f;
+    cell.coverImgView.backgroundColor = [UIColor clearColor];
+    cell.lblTotalView.backgroundColor = [UIColor clearColor];
+    cell.lblCurrentChap.backgroundColor = [UIColor clearColor];
+    if (indexPath.row % 2 == 0) {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:207.0f/255.0f green:216.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
+    } else {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:236.0f/255.0f green:239.0f/255.0f blue:241.0f/255.0f alpha:1.0f];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
+
 }
 #pragma mark - didSelectRowAtIndexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     ListChapViewController *listChapVCL = [sb instantiateViewControllerWithIdentifier:@"ListChapViewController"];
-    [self presentViewController:listChapVCL animated:YES completion:^{
-    }];
     
+    [self.navigationController pushViewController:listChapVCL animated:YES];
     ///
     
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
@@ -167,6 +181,11 @@
             // Merse di nhe !!!! Day nay
             Cover *coverOfThisCell = [self.coverObjects objectAtIndex:indexPath.row];
             [listChapVCL.imvManga setImageWithURL:[NSURL URLWithString:coverOfThisCell.url] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            listChapVCL.imvManga .layer.cornerRadius = 10.0f;
+            listChapVCL.imvManga .layer.masksToBounds = YES;
+            listChapVCL.imvManga .layer.borderColor = [UIColor blackColor].CGColor;
+            listChapVCL.imvManga .layer.borderWidth = 3.0f;
+
             ///
             MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listChapVCL.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -248,6 +267,7 @@
                     [listStoryVCL loadListStorys:(NSString*)urlString previewPage:(NSString*)previewPageXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString];
+                    [self postionNextAndBack];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [hud hide:YES];
                         [listStoryVCL.tableView reloadData];
@@ -353,7 +373,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:189.0f/255.0f blue:189.0f/255.0f alpha:1.0f];
+    [self customNavigation];
+    _tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    [self postionNextAndBack];
+    
+}
+
+
+#define nextPosX self.view.frame.size.width - 60
+#define nextPosY self.navigationController.navigationBar.frame.size.height + 20
+#define nextWidth 60
+#define nextHeight 60
+#define backPosX self.view.frame.size.width - 120
+#define backPosY self.navigationController.navigationBar.frame.size.height + 20
+#define backWidth 60
+#define backHeight 60
+- (void) postionNextAndBack {
+    _btnNext.translatesAutoresizingMaskIntoConstraints = YES;
+    _btnPre.translatesAutoresizingMaskIntoConstraints = YES;
+    _btnNext.frame = CGRectMake(nextPosX, nextPosY, nextWidth, nextHeight);
+    _btnPre.frame = CGRectMake(backPosX, backPosY, backWidth, backHeight);
     
 }
 
@@ -362,13 +403,35 @@
     
     // Dispose of any resources that can be recreated.
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+#pragma mark - Custom Navigation
+- (void) customNavigation {
+    //---------------------------------------------------------
+    //set color for navigation bar
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.f/255.0f green:10.f/255.0f blue:0.f/255.0f alpha:1.0f];
+    
+    //---------------------------------------------------------
+    //set title for back button
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    //---------------------------------------------------------
+    //set first title
+    self.navigationItem.title = @"Cho Title vao day nhe";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"ChalkboardSE-Bold" size:23], NSFontAttributeName, nil]];
+    
+    //---------------------------------------------------------
+    //change style of StatusBar
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    
+    //---------------------------------------------------------
+    //change back button icon
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:BUTTON_BACK];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:BUTTON_BACK];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+}
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ListChapViewController.h"
-
+#import "ConstantValues.h"
 @interface ListChapViewController ()
 
 @end
@@ -87,7 +87,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 100;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -101,6 +101,16 @@
     cell.lblLink.text = chapterNameOfThisCell.url;
     cell.lblChapterName.text = chapterNameOfThisCell.title;
     cell.lblDateUpdate.text = dateUpdateOfThisCell.title;
+    
+    cell.lblChapterName.backgroundColor = [UIColor clearColor];
+    cell.lblDateUpdate.backgroundColor = [UIColor clearColor];
+    
+    if (indexPath.row % 2 == 0) {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:207.0f/255.0f green:216.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
+    } else {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:236.0f/255.0f green:239.0f/255.0f blue:241.0f/255.0f alpha:1.0f];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 #pragma mark - didSelectRowAtIndexPath
@@ -126,14 +136,17 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self customNavigation];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:189.0f/255.0f blue:189.0f/255.0f alpha:1.0f];
     self.tableView.tableFooterView = [[UIView alloc] init];
-   
+    _txtDescription.backgroundColor = [UIColor clearColor];
     if(self.summaryContentObjects.count > 0) {
         SummaryContent *summaryContent = [[SummaryContent alloc] init];
         summaryContent = [self.summaryContentObjects objectAtIndex:0];
-        self.lblSummaryContent.text = summaryContent.textContent;
-//        _imvManga.image = [UIImage imageNamed:_imvMangaString];
+//        self.lblSummaryContent.text = summaryContent.textContent;
+        _txtDescription.text =summaryContent.textContent;
+        
     }
     
 }
@@ -142,5 +155,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Custom Navigation
+- (void) customNavigation {
+    //---------------------------------------------------------
+    //set first title
+    self.navigationItem.title = @"Title nay nua nhe";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"ChalkboardSE-Bold" size:23], NSFontAttributeName, nil]];
+    
+    //---------------------------------------------------------
+    //change style of StatusBar
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+}
+
+
+
+
 
 @end

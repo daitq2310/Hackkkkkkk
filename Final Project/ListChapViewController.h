@@ -16,6 +16,7 @@
 #import "CustomCell3.h"
 #import "APIClient.h"
 #include "DetailChapViewController.h"
+#import "ActionSheetViewController.h"
 @interface ListChapViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *summaryContentObjects;
@@ -29,4 +30,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imvManga;
 @property NSString *urlString;
 @property NSString *imvMangaString;
+@property ActionSheetViewController *actionSheetVC;
 @end

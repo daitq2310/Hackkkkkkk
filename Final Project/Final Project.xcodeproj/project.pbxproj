@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321A689B1D1F951B00A96A4A /* ActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A68991D1F951B00A96A4A /* ActionSheetViewController.m */; };
 		32DF49D41D1DAC7D0073768A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF49D31D1DAC7D0073768A /* PageContentViewController.m */; };
 		32DF49D61D1DAC870073768A /* PageContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DF49D51D1DAC870073768A /* PageContentViewController.xib */; };
 		32DF49DD1D1DB15A0073768A /* DetailChapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF49DB1D1DB15A0073768A /* DetailChapViewController.m */; };
@@ -50,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		2BD6D9A692FF79A0B0B7585C /* libPods-Final Project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Final Project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		321A68991D1F951B00A96A4A /* ActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetViewController.m; sourceTree = "<group>"; };
+		321A689A1D1F951B00A96A4A /* ActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetViewController.h; sourceTree = "<group>"; };
 		32DF49D21D1DAC7D0073768A /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		32DF49D31D1DAC7D0073768A /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		32DF49D51D1DAC870073768A /* PageContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContentViewController.xib; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				32DF49D81D1DADA90073768A /* ConstantValues.h */,
+				321A68991D1F951B00A96A4A /* ActionSheetViewController.m */,
+				321A689A1D1F951B00A96A4A /* ActionSheetViewController.h */,
 				32DF49D11D1DAC020073768A /* Top Page Indicator */,
 				E9CC6DB21D16ABE9003EEB08 /* Model */,
 				E9B2AF041D0FD62B00E76071 /* Final Project */,
@@ -258,8 +263,8 @@
 		E9B5E86B1D1B218A00BE0ACB /* CurrentChap */ = {
 			isa = PBXGroup;
 			children = (
-				E9CC6DD71D1741CD003EEB08 /* CurrentChap.h */,
 				E9CC6DD81D1741CD003EEB08 /* CurrentChap.m */,
+				E9CC6DD71D1741CD003EEB08 /* CurrentChap.h */,
 			);
 			name = CurrentChap;
 			sourceTree = "<group>";
@@ -490,7 +495,7 @@
 				TargetAttributes = {
 					E9B2AF011D0FD62B00E76071 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = RYWBVVCN4Z;
+						DevelopmentTeam = 2QXC9R6MR6;
 					};
 				};
 			};
@@ -593,6 +598,7 @@
 				E9B89C211D1D918000B1AACF /* TopStoryImage.m in Sources */,
 				E9CC6DCA1D1732C8003EEB08 /* StoryName.m in Sources */,
 				E9B2AF0A1D0FD62B00E76071 /* AppDelegate.m in Sources */,
+				321A689B1D1F951B00A96A4A /* ActionSheetViewController.m in Sources */,
 				E9B5E8641D1B20F800BE0ACB /* NextPage.m in Sources */,
 				E9CC6DE81D17E3DB003EEB08 /* CustomCell3.m in Sources */,
 				E92D5B071D1D49EF0034B31C /* ChapReading.m in Sources */,
@@ -719,6 +725,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -734,8 +741,9 @@
 				INFOPLIST_FILE = "Final Project/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.final.manga;
+				PRODUCT_BUNDLE_IDENTIFIER = com.final.manga1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -745,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -760,8 +769,9 @@
 				INFOPLIST_FILE = "Final Project/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.final.manga;
+				PRODUCT_BUNDLE_IDENTIFIER = com.final.manga1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

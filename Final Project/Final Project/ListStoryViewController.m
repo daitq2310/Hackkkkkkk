@@ -183,6 +183,7 @@
             [listChapVCL.imvManga setImageWithURL:[NSURL URLWithString:coverOfThisCell.url] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             listChapVCL.imvManga .layer.cornerRadius = 10.0f;
             listChapVCL.imvManga .layer.masksToBounds = YES;
+            
             listChapVCL.imvManga .layer.borderColor = [UIColor blackColor].CGColor;
             listChapVCL.imvManga .layer.borderWidth = 3.0f;
 
@@ -431,7 +432,33 @@
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //---------------------------------------------------------
+    //change back button icon
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    //---------------------------------------------------------
+    //Right button
+    UIButton *btnMore = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"more"]  ;
+    [btnMore setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [btnMore addTarget:self action:@selector(btnMoreTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    btnMore.frame = CGRectMake(0, 0, 25, 25);
+    UIBarButtonItem *buttonMore = [[UIBarButtonItem alloc] initWithCustomView:btnMore] ;
+    self.navigationItem.rightBarButtonItem = buttonMore;
+
     
 }
 
+
+- (void) btnMoreTouchUpInside : (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    _actionSheetVC = [storyboard instantiateViewControllerWithIdentifier:@"Action"];
+    UIView* myView = _actionSheetVC.view;
+    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    [currentWindow addSubview:myView];
+}
 @end

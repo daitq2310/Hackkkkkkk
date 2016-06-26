@@ -22,7 +22,7 @@ static NSString * const PAGE_INDICATOR_IMG_10 = @"placeholder";
 
 static NSString * const PAGE_VIEW_CONTROLLER_ID = @"PageViewController";
 static NSString * const PAGE_CONTENT_VIEW_CONTROLLER_ID = @"PageContentViewController";
-static NSString * const APP_NAME_HEADER = @"MANGA READER";
+static NSString * const APP_NAME_HEADER = @"MANGA STORM";
 static NSString * const BUTTON_BACK = @"back";
 static NSString * const BUTTON_MORE = @"more";
 #pragma mark - Number

@@ -21,7 +21,7 @@
     [self customNavigation];
     [self SWRevealViewControllerInit];
     [self topPageIndicator];
-    [self leftType];
+
         Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     reach.reachableBlock = ^(Reachability*reach)
     {
@@ -38,6 +38,7 @@
                 [self loadCategory:urlString topStoryImageXpathQueryString:topStoryImageXpathQueryString];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [hud hide:YES];
+                    [self leftType];
                     [self.tableView reloadData];
                 });
             });
@@ -248,6 +249,8 @@
 - (void) leftType {
     _tableView.translatesAutoresizingMaskIntoConstraints = YES;
     _tableView.frame = CGRectMake(TABLE_POSITION_X, TABLE_POSITION_Y, TABLE_WIDTH, TABLE_HEIGHT);
+    _tableView.layer.borderWidth = 1.0f;
+    _tableView.layer.borderColor = [UIColor blueColor].CGColor;
 }
 
 
@@ -361,6 +364,11 @@
 }
 
 - (void) btnMoreTouchUpInside : (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    _actionSheetVC = [storyboard instantiateViewControllerWithIdentifier:@"Action"];
+    UIView* myView = _actionSheetVC.view;
+    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    [currentWindow addSubview:myView];
     
 }
 

@@ -24,6 +24,8 @@
 #import <UIActivityIndicator-for-SDWebImage+UIButton/UIImageView+UIActivityIndicatorForSDWebImage.h>
 #import <Reachability/Reachability.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "PageContentViewController.h"
+#import "ActionSheetViewController.h"
 @interface ListStoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 @property (weak, nonatomic) IBOutlet UIButton *btnPre;
@@ -51,5 +53,8 @@
 -(void) loadListStorys:(NSString*)urlString previewPage:(NSString*)previewPageXpathQueryString;
 -(void) loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString;
 -(void) loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString;
+
+
+@property ActionSheetViewController *actionSheetVC;
 @end
 

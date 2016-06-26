@@ -22,13 +22,14 @@
 
 #import "APIClient.h"
 #import "ListStoryViewController.h"
+#import "ActionSheetViewController.h"
 @interface ViewController : UIViewController <UIPageViewControllerDataSource,UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barBtnItem;
 
-
+@property ActionSheetViewController *actionSheetVC;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

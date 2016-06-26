@@ -157,10 +157,20 @@
 
 #pragma mark - didSelectRowAtIndexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    xCategory  *categoryOfThisCell = [self.categoryObjects objectAtIndex:indexPath.row];
+    NSString *urlString = categoryOfThisCell.url;
+    NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
+    NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
+    NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+    NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+    NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
+    NSString *currentPageXpathQueryString = @"//span[@class='current']";
+    NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
+    NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
+    listStoryVCL.titleNavigation = categoryOfThisCell.title;
     [self.navigationController pushViewController:listStoryVCL animated:YES];
-    
     
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     reach.reachableBlock = ^(Reachability*reach)
@@ -169,16 +179,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                xCategory  *categoryOfThisCell = [self.categoryObjects objectAtIndex:indexPath.row];
-                NSString *urlString = categoryOfThisCell.url;
-                NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
-                NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
-                NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
-                NSString *currentPageXpathQueryString = @"//span[@class='current']";
-                NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
-                NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
                 listStoryVCL.urlString = urlString;
                 [listStoryVCL loadListStorys:(NSString*)urlString storyName:(NSString*)storyNameXpathQueryString];
                 [listStoryVCL loadListStorys:(NSString*)urlString currentChap:(NSString*)currentChapXpathQueryString];
@@ -369,7 +369,6 @@
     UIView* myView = _actionSheetVC.view;
     UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
     [currentWindow addSubview:myView];
-    
 }
 
 @end

@@ -155,13 +155,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 #pragma mark - Custom Navigation
 - (void) customNavigation {
     //---------------------------------------------------------
     //set first title
-    self.navigationItem.title = @"Title nay nua nhe";
+    self.navigationItem.title = self.titleNavigation;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"ChalkboardSE-Bold" size:23], NSFontAttributeName, nil]];
     
     //---------------------------------------------------------

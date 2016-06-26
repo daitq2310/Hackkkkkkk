@@ -163,16 +163,19 @@
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
-
+    
 }
 #pragma mark - didSelectRowAtIndexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    StoryName  *storyNameOfThisCell = [self.storyNameObjects objectAtIndex:indexPath.row];
+    NSString *urlString = storyNameOfThisCell.url;
+    NSString *summaryContentXpathQueryString = @"//div[@class='entry-content']";
+    NSString *chapterNameXpathQueryString = @"//div[@class='row']";
+    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     ListChapViewController *listChapVCL = [sb instantiateViewControllerWithIdentifier:@"ListChapViewController"];
-    
+    listChapVCL.titleNavigation = storyNameOfThisCell.title;
     [self.navigationController pushViewController:listChapVCL animated:YES];
-    ///
-    
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     reach.reachableBlock = ^(Reachability*reach)
     {
@@ -186,14 +189,10 @@
             
             listChapVCL.imvManga .layer.borderColor = [UIColor blackColor].CGColor;
             listChapVCL.imvManga .layer.borderWidth = 3.0f;
-
+            
             ///
             MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listChapVCL.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                StoryName  *storyNameOfThisCell = [self.storyNameObjects objectAtIndex:indexPath.row];
-                NSString *urlString = storyNameOfThisCell.url;
-                NSString *summaryContentXpathQueryString = @"//div[@class='entry-content']";
-                NSString *chapterNameXpathQueryString = @"//div[@class='row']";
                 listChapVCL.urlString = urlString;
                 [listChapVCL loadListChap:urlString chapterName:chapterNameXpathQueryString];
                 [listChapVCL loadListChap:urlString dateUpdate:chapterNameXpathQueryString];
@@ -235,15 +234,27 @@
 }
 #pragma mark - Click Preview page
 - (IBAction)clickPreviewPage:(id)sender {
-   
     if(self.previewPageObjects.count > 0) {
-        
         PreviewPage *previewPage = [[PreviewPage alloc] init];
         previewPage = [self.previewPageObjects objectAtIndex:0];
+        NSString *urlString = previewPage.url;
+        NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
+        NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
+        NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+        NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+        NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
+        NSString *currentPageXpathQueryString = @"//span[@class='current']";
+        NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
+        NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
-        [self.navigationController pushViewController:listStoryVCL animated:YES];
-         [self customNavigation];
+        [self addChildViewController:listStoryVCL];
+        [UIView transitionWithView:self.view duration:1.0
+                           options:UIViewAnimationOptionTransitionFlipFromLeft //change to whatever animation you like
+                        animations:^ {
+                            [self.view addSubview:listStoryVCL.view];
+                        }
+                        completion:nil];
         Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
         reach.reachableBlock = ^(Reachability*reach)
         {
@@ -251,15 +262,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *urlString = previewPage.url;
-                    NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
-                    NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
-                    NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                    NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                    NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
-                    NSString *currentPageXpathQueryString = @"//span[@class='current']";
-                    NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
-                    NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
                     listStoryVCL.urlString = urlString;
                     [listStoryVCL loadListStorys:(NSString*)urlString storyName:(NSString*)storyNameXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString currentChap:(NSString*)currentChapXpathQueryString];
@@ -306,16 +308,27 @@
 }
 #pragma mark - Click Next page
 - (IBAction)clickNextPage:(id)sender {
-    [self customNavigation];
-    
     if(self.nextPageObjects.count > 0) {
         NextPage *nextPage = [[NextPage alloc] init];
         nextPage = [self.nextPageObjects objectAtIndex:0];
+        NSString *urlString = nextPage.url;
+        NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
+        NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
+        NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+        NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
+        NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
+        NSString *currentPageXpathQueryString = @"//span[@class='current']";
+        NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
+        NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
-        [self.navigationController pushViewController:listStoryVCL animated:YES];
-     
-         [self customNavigation];
+        [self addChildViewController:listStoryVCL];
+        [UIView transitionWithView:self.view duration:1.0
+                           options:UIViewAnimationOptionTransitionFlipFromRight //change to whatever animation you like
+                        animations:^ {
+                            [self.view addSubview:listStoryVCL.view];
+                        }
+                        completion:nil];
         Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
         reach.reachableBlock = ^(Reachability*reach)
         {
@@ -323,15 +336,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:listStoryVCL.view animated:YES];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *urlString = nextPage.url;
-                    NSString *storyNameXpathQueryString = @"//h3[@class='nowrap']/a";
-                    NSString *totalViewXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/span";
-                    NSString *coverXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                    NSString *currentChapXpathQueryString = @"//div[@class='wrap_update tab_anh_dep danh_sach']/div/a";
-                    NSString *categorysXpathQueryString = @"//div[@class='item2_theloai']";
-                    NSString *currentPageXpathQueryString = @"//span[@class='current']";
-                    NSString *previewPageXpathQueryString = @"//a[@class='previouspostslink']";
-                    NSString *nextPageXpathQueryString = @"//a[@class='nextpostslink']";
                     listStoryVCL.urlString = urlString;
                     [listStoryVCL loadListStorys:(NSString*)urlString storyName:(NSString*)storyNameXpathQueryString];
                     [listStoryVCL loadListStorys:(NSString*)urlString currentChap:(NSString*)currentChapXpathQueryString];
@@ -352,7 +356,7 @@
         {
             NSLog(@"UNREACHABLE!");
             UIAlertController * alert = [UIAlertController
-                                         alertControllerWithTitle:@"FBI Warning"
+                                         alertControllerWithTitle:@"Warning"
                                          message:@"Please checking for your network !"
                                          preferredStyle:UIAlertControllerStyleAlert];
             
@@ -383,7 +387,6 @@
     _tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self postionNextAndBack];
-    
 }
 
 
@@ -422,7 +425,7 @@
     
     //---------------------------------------------------------
     //set first title
-    self.navigationItem.title = @"Cho Title vao day nhe";
+    self.navigationItem.title = self.titleNavigation;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"ChalkboardSE-Bold" size:23], NSFontAttributeName, nil]];
     
     //---------------------------------------------------------
@@ -453,7 +456,7 @@
     btnMore.frame = CGRectMake(0, 0, 25, 25);
     UIBarButtonItem *buttonMore = [[UIBarButtonItem alloc] initWithCustomView:btnMore] ;
     self.navigationItem.rightBarButtonItem = buttonMore;
-
+    
     
 }
 

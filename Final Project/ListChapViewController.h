@@ -31,4 +31,6 @@
 @property NSString *urlString;
 @property NSString *imvMangaString;
 @property ActionSheetViewController *actionSheetVC;
+
+@property NSString *titleNavigation;
 @end

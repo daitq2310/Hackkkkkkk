@@ -54,7 +54,7 @@
 -(void) loadListStorys:(NSString*)urlString nextPage:(NSString*)nextPageXpathQueryString;
 -(void) loadListStorys:(NSString*)urlString totalView:(NSString*)totalViewXpathQueryString;
 
-
+@property NSString *titleNavigation;
 @property ActionSheetViewController *actionSheetVC;
 @end
 

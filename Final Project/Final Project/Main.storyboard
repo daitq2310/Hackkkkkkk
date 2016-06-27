@@ -312,11 +312,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1Kw-VH-Q40">
-                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="dJn-Au-K7a"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="1Kw-VH-Q40"/>
                     <connections>
-                        <outlet property="barBtnItem" destination="dJn-Au-K7a" id="d03-Qm-hGf"/>
                         <outlet property="tableView" destination="C9I-85-4aQ" id="4Aa-Sj-5DE"/>
                     </connections>
                 </viewController>

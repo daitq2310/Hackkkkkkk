@@ -249,7 +249,7 @@
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
         [self addChildViewController:listStoryVCL];
-        [UIView transitionWithView:self.view duration:0.5
+        [UIView transitionWithView:self.view duration:0.2
                            options:UIViewAnimationOptionTransitionFlipFromLeft //change to whatever animation you like
                         animations:^ {
                             [self.view addSubview:listStoryVCL.view];
@@ -323,7 +323,7 @@
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ListStoryViewController *listStoryVCL = [sb instantiateViewControllerWithIdentifier:@"ListStoryViewController"];
         [self addChildViewController:listStoryVCL];
-        [UIView transitionWithView:self.view duration:0.5
+        [UIView transitionWithView:self.view duration:0.2
                            options:UIViewAnimationOptionTransitionFlipFromRight //change to whatever animation you like
                         animations:^ {
                             [self.view addSubview:listStoryVCL.view];

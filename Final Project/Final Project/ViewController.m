@@ -74,7 +74,7 @@
         NSInvocation      *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:self];
         [invocation setSelector:@selector(update)];
-        [NSTimer scheduledTimerWithTimeInterval:2 invocation:invocation repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:3 invocation:invocation repeats:YES];
         [self update];
 }
 -(UIViewController*)randomVC
@@ -208,8 +208,8 @@
     {
         NSLog(@"UNREACHABLE!");
         UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:@"FBI Warning"
-                                     message:@"Please checking for your network !"
+                                     alertControllerWithTitle:@"Warning"
+                                     message:@"Please check your network !"
                                      preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* yesButton = [UIAlertAction
